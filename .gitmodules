@@ -1,0 +1,9 @@
+[submodule "imp.lib"]
+	path = imp.lib
+	url = https://github.com/imp-nix/imp.lib
+[submodule "imp.docgen"]
+	path = imp.docgen
+	url = https://github.com/imp-nix/imp.docgen
+[submodule "imp.ixample"]
+	path = imp.ixample
+	url = https://github.com/imp-nix/imp.ixample
