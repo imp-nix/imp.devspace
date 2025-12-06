@@ -13,3 +13,6 @@
 [submodule "imp.fmt"]
 	path = imp.fmt
 	url = https://github.com/imp-nix/imp.fmt
+[submodule ".github"]
+	path = .github
+	url = https://github.com/imp-nix/.github
