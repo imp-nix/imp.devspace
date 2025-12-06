@@ -1,0 +1,5 @@
+# Rename this file to `.ignore` for your local version (not git tracked) and for ripgrep to see it.
+
+# Lines prefixed with `!` tells ripgrep (and by extension, OpenCode's glob/list tool) to search in the specified dirs, even if not tracked. I personally like to put reference repos and other projects nested in `tmp` dirs that are gitignore'd but I still want OpenCode agents to be able to see.
+
+!tmp/

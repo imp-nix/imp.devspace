@@ -26,6 +26,7 @@ This is a chore to read, there's no intrigue. Users need information dense and u
 ✓ Use domain vocabulary. If there's a correct term (attrset, derivation, module system, fixed-point), use it. Readers can look it up; vagueness they cannot.
 ✓ Describe behavior, not personality. The code doesn't "know" or "understand" or "recognize". It pattern-matches, recurses, evaluates.
 ✓ Quantify when possible. "Three levels deep" beats "nested". "Fails at eval time with 'attribute missing'" beats "will error".
+✓ Use backticks for filepaths, commands, function names, arguments, options, attributes.
 
 ## AVOID
 

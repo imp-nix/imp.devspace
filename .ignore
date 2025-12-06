@@ -1,2 +1,0 @@
-# Allows OpenCode ripgrep to search in tmp, but still keep it gitignore'd
-!tmp/

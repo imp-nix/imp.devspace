@@ -1,5 +1,41 @@
-- This is a multi-repo workspace (no root git repo).
-- Remember to `git add` untracked files before doing nix evals.
-- If developing a working version of a library or dependency, and needing to test changes from the consuming flake, use the `--override-input` arg in nix evals, e.g. `--override-input nixdoc path:.imp.docgen/`. Do not change the input url/path directly in the consumer.
-- Local dev references are in `tmp/` (gitignored); should not be linked to/referenced by committed code.
-- If writing documentation, see the [style guide](./docs/documentation-style/guide.md).
+# imp.devspace
+
+Multi-repo workspace for the imp Nix ecosystem.
+
+## Packages
+
+```mermaid
+graph TD
+    fmt[imp.fmt]
+    docgen[imp.docgen]
+    impgraph[imp.graph]
+    lib[imp.lib]
+    ixample[imp.ixample]
+
+    fmt --> docgen
+    fmt --> impgraph
+    fmt --> lib
+    docgen -.-> lib
+    impgraph -.-> lib
+    lib --> ixample
+```
+
+| Package       | Description                                              |
+| ------------- | -------------------------------------------------------- |
+| `imp.fmt`     | Standalone opinionated treefmt-nix formatter             |
+| `imp.docgen`  | API doc generator (Rust CLI + Nix lib)                   |
+| `imp.graph`   | Interactive dependency graph (Rust/WASM)                 |
+| `imp.lib`     | Core library + flake-parts module                        |
+| `imp.ixample` | Example NixOS config consumer flake of the imp ecosystem |
+
+Solid arrows = build-time deps. Dashed = optional.
+
+## Development testing
+
+Test changes across repos before committing/pushing using `--override-input`, e.g. `nix flake check --override-input imp-fmt path:../imp.fmt`
+
+## Guidelines
+
+- `git add` untracked files before nix evals (new files only, not necessary for edits)
+- Local dev refs go in `tmp/` (gitignored)
+- See [docs/documentation-style/guide.md](./docs/documentation-style/guide.md) for prose style

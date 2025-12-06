@@ -7,3 +7,9 @@
 [submodule "imp.ixample"]
 	path = imp.ixample
 	url = https://github.com/imp-nix/imp.ixample
+[submodule "imp.graph"]
+	path = imp.graph
+	url = https://github.com/imp-nix/imp.graph
+[submodule "imp.fmt"]
+	path = imp.fmt
+	url = https://github.com/imp-nix/imp.fmt
