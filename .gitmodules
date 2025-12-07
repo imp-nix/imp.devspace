@@ -16,3 +16,6 @@
 [submodule ".github"]
 	path = .github
 	url = https://github.com/imp-nix/.github
+[submodule "imp.refactor"]
+	path = imp.refactor
+	url = https://github.com/imp-nix/imp.refactor
