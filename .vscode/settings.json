@@ -1,6 +1,11 @@
 {
     "files.exclude": {
         "**/.direnv": true,
-        "**/target": true
-    }
+        "**/target": true,
+        "**/result": true
+    },
+    "files.associations": {
+            "**/.ignore": "ignore",
+            "**/.ignore.example": "ignore"
+        }
 }
