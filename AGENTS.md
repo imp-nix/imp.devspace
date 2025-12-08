@@ -9,24 +9,29 @@ graph TD
     fmt[imp.fmt]
     docgen[imp.docgen]
     impgraph[imp.graph]
+    refactor[imp.refactor]
     lib[imp.lib]
     ixample[imp.ixample]
 
     fmt --> docgen
     fmt --> impgraph
+    fmt --> refactor
     fmt --> lib
     docgen -.-> lib
     impgraph -.-> lib
     lib --> ixample
+    impgraph -.-> ixample
+    refactor -.-> ixample
 ```
 
-| Package       | Description                                              |
-| ------------- | -------------------------------------------------------- |
-| `imp.fmt`     | Standalone opinionated treefmt-nix formatter             |
-| `imp.docgen`  | API doc generator (Rust CLI + Nix lib)                   |
-| `imp.graph`   | Interactive dependency graph (Rust/WASM)                 |
-| `imp.lib`     | Core library + flake-parts module                        |
-| `imp.ixample` | Example NixOS config consumer flake of the imp ecosystem |
+| Package        | Description                                              |
+| -------------- | -------------------------------------------------------- |
+| `imp.fmt`      | Standalone opinionated treefmt-nix formatter             |
+| `imp.docgen`   | API doc generator (Rust CLI + Nix lib)                   |
+| `imp.graph`    | Interactive dependency graph (Rust/WASM)                 |
+| `imp.refactor` | Nix registry refactoring tool                            |
+| `imp.lib`      | Core library + flake-parts module                        |
+| `imp.ixample`  | Example NixOS config consumer flake of the imp ecosystem |
 
 Solid arrows = build-time deps. Dashed = optional.
 
