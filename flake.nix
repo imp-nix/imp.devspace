@@ -42,7 +42,6 @@
       forAllSystems = nixpkgs.lib.genAttrs systems;
     in
     {
-      # Simple formatter using nixpkgs treefmt
       formatter = forAllSystems (
         system:
         let
@@ -53,13 +52,11 @@
         ''
       );
 
-      # Dev shell with common tools for imp development
       devShells = forAllSystems (
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
 
-          # Submodule management scripts
           sub-update = pkgs.writeShellScriptBin "sub-update" ''
             git submodule foreach --recursive 'nix flake update || :'
           '';
@@ -92,11 +89,10 @@
             git submodule foreach --recursive 'nix-collect-garbage || :'
           '';
 
-          # Update, commit, and push in dependency order
           sub-update-push = pkgs.writeShellScriptBin "sub-update-push" ''
             set -e
 
-            echo '==> Updating imp.fmt (no dependencies)'
+            echo '==> Updating imp.fmt'
             cd imp.fmt
             nix flake update
             git add flake.lock
@@ -104,7 +100,7 @@
             git push
             cd ..
 
-            echo '==> Updating imp.docgen (depends on imp.fmt)'
+            echo '==> Updating imp.docgen'
             cd imp.docgen
             nix flake update
             git add flake.lock
@@ -112,7 +108,7 @@
             git push
             cd ..
 
-            echo '==> Updating imp.graph (depends on imp.fmt)'
+            echo '==> Updating imp.graph'
             cd imp.graph
             nix flake update
             git add flake.lock
@@ -120,7 +116,7 @@
             git push
             cd ..
 
-            echo '==> Updating imp.refactor (depends on imp.fmt)'
+            echo '==> Updating imp.refactor'
             cd imp.refactor
             nix flake update
             git add flake.lock
@@ -128,7 +124,7 @@
             git push
             cd ..
 
-            echo '==> Updating imp.lib (depends on imp.fmt, imp.docgen)'
+            echo '==> Updating imp.lib'
             cd imp.lib
             nix flake update
             git add flake.lock
@@ -136,7 +132,7 @@
             git push
             cd ..
 
-            echo '==> Updating imp.ixample (depends on imp.lib, imp.graph, imp.refactor)'
+            echo '==> Updating imp.ixample'
             cd imp.ixample
             nix flake update
             git add flake.lock
@@ -149,31 +145,24 @@
         in
         {
           default = pkgs.mkShell {
-            packages =
-              with pkgs;
-              [
-                # Formatters
-                nixfmt-rfc-style
-                mdformat
-
-                # Dev tools
-                git
-                gh
-
-                # Submodule management scripts
-                sub-update
-                sub-check
-                sub-fmt
-                sub-pull
-                sub-status
-                sub-log
-                sub-push
-                sub-clean
-                sub-update-push
-              ];
+            packages = with pkgs; [
+              nixfmt-rfc-style
+              mdformat
+              git
+              gh
+              sub-update
+              sub-check
+              sub-fmt
+              sub-pull
+              sub-status
+              sub-log
+              sub-push
+              sub-clean
+              sub-update-push
+            ];
 
             shellHook = ''
-              echo "🚀 imp.devspace development environment"
+              echo "😈 imp.devspace development environment"
               echo ""
               echo "Submodule commands:"
               echo "  sub-update       - Update flake locks in all submodules"
